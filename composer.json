@@ -1,0 +1,22 @@
+{
+  "name": "origindesign/authorize_forms",
+  "description": "Drupal 8 module to connect payment forms to Authorize.net payment gateway",
+  "type": "drupal-module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Lindsay Wilson",
+      "email": "lwilson@origindesign.ca"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "ext-curl": "*",
+    "phpunit/phpunit": "~4.8||~6.0",
+    "authorizenet/authorizenet": ">=1.9.3 || <2.0"
+  },
+  "autoload": {
+    "classmap": ["constants"]
+  },
+  "minimum-stability": "dev"
+}
