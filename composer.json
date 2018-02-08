@@ -15,8 +15,5 @@
     "phpunit/phpunit": "~4.8||~6.0",
     "authorizenet/authorizenet": ">=1.9.3 || <2.0"
   },
-  "autoload": {
-    "classmap": ["constants"]
-  },
   "minimum-stability": "dev"
 }
