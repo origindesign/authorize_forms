@@ -1,0 +1,7 @@
+scripts:
+  version: 1.x
+  js:
+    js/scripts.js: { preprocess: false }
+  dependencies:
+    - core/drupal
+    - core/jquery.once

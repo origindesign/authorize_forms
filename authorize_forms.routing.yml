@@ -1,0 +1,7 @@
+authorize_forms.settings:
+  path: '/admin/config/services/authorize_net'
+  defaults:
+    _form: '\Drupal\authorize_forms\Form\AuthorizeNetSettingsForm'
+    _title: 'Authorize.net settings'
+  requirements:
+    _permission: 'administer authorize.net'

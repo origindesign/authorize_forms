@@ -1,0 +1,4 @@
+administer authorize.net:
+    title: 'Administer Authorize.net settings.'
+    description: 'Adding or updating Authorize.net API credentials.'
+    restrict access: true

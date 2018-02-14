@@ -1,0 +1,6 @@
+authorize_forms.settings:
+  title: 'Authorize.net'
+  description: 'Configure your Authorize.net credentials'
+  route_name: authorize_forms.settings
+  parent: system.admin_config_services
+  weight: -7

@@ -1,0 +1,3 @@
+services:
+  authorize_forms.payments:
+    class: Drupal\authorize_forms\Payments
