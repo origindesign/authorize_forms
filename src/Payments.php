@@ -49,7 +49,7 @@ class Payments {
 
         // Create order information
         $order = new AnetAPI\OrderType();
-        $order->setInvoiceNumber("10101");
+        $order->setInvoiceNumber("DC-".rand(00000000, 99999999));
         $order->setDescription($_POST['description']);
 
         // Set the customer's Bill To address
