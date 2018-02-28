@@ -10,7 +10,7 @@ function authorize_forms_page_attachments(array &$page) {
         $script = [
             '#tag' => 'script',
             '#attributes' => [
-                'src' => 'https://jstest.authorize.net/v1/Accept.js',
+                'src' => 'https://js.authorize.net/v1/Accept.js',
             ],
         ];
         #https://js.authorize.net/v1/Accept.js
