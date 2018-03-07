@@ -89,7 +89,7 @@
         if (typeof Drupal.behaviors.authorizeForms.form[0].checkValidity() !== "undefined") {
 
             if(Drupal.behaviors.authorizeForms.form[0].checkValidity()){
-                cardField.val('************'+cardField.val().substring(11,15));
+                cardField.val('************'+cardField.val().substring(12,16));
             }
 
         }else{
