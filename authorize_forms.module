@@ -3,17 +3,25 @@
 function authorize_forms_page_attachments(array &$page) {
 
     $current_uri = \Drupal::request()->getRequestUri();
+    // Get vars from config
+    $config = \Drupal::config('authorize_forms.settings');
 
     if(strpos($current_uri,'payment/') !== false){
+
+        $mode = $config->get('mode');
+        if($mode == 'sandbox'){
+            $scriptURL = 'https://jstest.authorize.net/v1/Accept.js';
+        }else{
+            $scriptURL = 'https://js.authorize.net/v1/Accept.js';
+        }
 
         // Add accept.js to head as drupal strips https out of URL on libraries
         $script = [
             '#tag' => 'script',
             '#attributes' => [
-                'src' => 'https://js.authorize.net/v1/Accept.js',
+                'src' => $scriptURL,
             ],
         ];
-        #https://js.authorize.net/v1/Accept.js
         $page['#attached']['html_head'][] = [$script, 'script'];
 
         // Add functionality script library

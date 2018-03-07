@@ -41,7 +41,7 @@ class AuthorizeNetSettingsForm extends ConfigFormBase {
     public function buildForm(array $form, FormStateInterface $form_state) {
 
         $config = $this->config('authorize_forms.settings');
-        
+
         $form['api_login_id'] = array(
             '#type' => 'textfield',
             '#title' => t('API Login ID'),
@@ -61,6 +61,16 @@ class AuthorizeNetSettingsForm extends ConfigFormBase {
             '#title' => t('Transaction Key'),
             '#required' => TRUE,
             '#default_value' => $config->get('transaction_key')
+        );
+
+        $form['mode'] = array(
+            '#type' => 'radios',
+            '#title' => t('Mode'),
+            '#default_value' => $config->get('mode'),
+            '#options' => array(
+                'sandbox' => t('Sandbox'),
+                'production' => t('Production'),
+            ),
         );
 
         return parent::buildForm($form, $form_state);
@@ -85,6 +95,9 @@ class AuthorizeNetSettingsForm extends ConfigFormBase {
         if ($form_values['transaction_key'] == '') {
             $form_state->setErrorByName('transaction_key', $this->t('The Transaction Key field is required'));
         }
+        if ($form_values['mode'] == '') {
+            $form_state->setErrorByName('mode', $this->t('Please select a mode'));
+        }
 
     }
 
@@ -102,6 +115,7 @@ class AuthorizeNetSettingsForm extends ConfigFormBase {
             ->set('api_login_id', $form_values['api_login_id'])
             ->set('public_client_key', $form_values['public_client_key'])
             ->set('transaction_key', $form_values['transaction_key'])
+            ->set('mode', $form_values['mode'])
             ->save();
 
         parent::submitForm($form, $form_state);

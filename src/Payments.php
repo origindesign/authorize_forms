@@ -2,7 +2,7 @@
 /**
  * @file Contains \Drupal\authorize_forms\Payments
  */
- 
+
 namespace Drupal\authorize_forms;
 
 use net\authorize\api\contract\v1 as AnetAPI;
@@ -113,7 +113,14 @@ class Payments {
 
         // Create the controller and get the response
         $controller = new AnetController\CreateTransactionController($request);
-        $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
+
+        // Set response based on config mode
+        $mode = $config->get('mode');
+        if($mode == 'sandbox'){
+            $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
+        }else{
+            $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
+        }
 
 
         if ($response != null) {
