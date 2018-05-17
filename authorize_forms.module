@@ -6,7 +6,7 @@ function authorize_forms_page_attachments(array &$page) {
     // Get vars from config
     $config = \Drupal::config('authorize_forms.settings');
 
-    if(strpos($current_uri,'payment/') !== false){
+    if(strpos($current_uri,$config->get('payment_forms_url').'/') !== false){
 
         $mode = $config->get('mode');
         if($mode == 'sandbox'){

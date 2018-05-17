@@ -8,3 +8,7 @@ authorize_forms.settings:
       type: string
     public_client_key:
       type: string
+    payment_forms_url:
+      type: string
+    mode:
+      type: string

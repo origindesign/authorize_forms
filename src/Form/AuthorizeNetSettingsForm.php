@@ -63,6 +63,13 @@ class AuthorizeNetSettingsForm extends ConfigFormBase {
             '#default_value' => $config->get('transaction_key')
         );
 
+        $form['payment_forms_url'] = array(
+            '#type' => 'textfield',
+            '#title' => t('Payments Forms Base URL'),
+            '#required' => TRUE,
+            '#default_value' => $config->get('payment_forms_url')
+        );
+
         $form['mode'] = array(
             '#type' => 'radios',
             '#title' => t('Mode'),
@@ -95,6 +102,9 @@ class AuthorizeNetSettingsForm extends ConfigFormBase {
         if ($form_values['transaction_key'] == '') {
             $form_state->setErrorByName('transaction_key', $this->t('The Transaction Key field is required'));
         }
+        if ($form_values['payment_forms_url'] == '') {
+            $form_state->setErrorByName('payment_forms_url', $this->t('The Payments Forms Base URL is required'));
+        }
         if ($form_values['mode'] == '') {
             $form_state->setErrorByName('mode', $this->t('Please select a mode'));
         }
@@ -115,6 +125,7 @@ class AuthorizeNetSettingsForm extends ConfigFormBase {
             ->set('api_login_id', $form_values['api_login_id'])
             ->set('public_client_key', $form_values['public_client_key'])
             ->set('transaction_key', $form_values['transaction_key'])
+            ->set('payment_forms_url', $form_values['payment_forms_url'])
             ->set('mode', $form_values['mode'])
             ->save();
 

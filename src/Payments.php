@@ -60,8 +60,23 @@ class Payments {
         $customerAddress->setCity($_POST['city']);
         $customerAddress->setState($_POST['state']);
         $customerAddress->setZip($_POST['zip']);
-        $customerAddress->setCountry("USA");
+        $customerAddress->setCountry($_POST['country']);
         $customerAddress->setPhoneNumber($_POST['phone']);
+
+        // Set the customer's Ship To address
+        if(isset($_POST['shipping-firstName']) && isset($_POST['shipping-lastName']) && isset($_POST['shipping-address']) && isset($_POST['shipping-city']) && isset($_POST['shipping-state']) && isset($_POST['shipping-zip']) && isset($_POST['shipping-country']) ){
+            $addShippingAddress = true;
+        }
+        if(isset($addShippingAddress) && $addShippingAddress){
+            $shipToAddress = new AnetAPI\CustomerAddressType();
+            $shipToAddress->setFirstName($_POST['shipping-firstName']);
+            $shipToAddress->setLastName($_POST['shipping-lastName']);
+            $shipToAddress->setAddress($_POST['shipping-address']);
+            $shipToAddress->setCity($_POST['shipping-city']);
+            $shipToAddress->setState($_POST['shipping-state']);
+            $shipToAddress->setZip($_POST['shipping-zip']);
+            $shipToAddress->setCountry($_POST['shipping-country']);
+        }
 
         // Set the customer's identifying information
         $customerData = new AnetAPI\CustomerDataType();
@@ -99,6 +114,9 @@ class Payments {
         $transactionRequestType->setPayment($paymentOne);
         $transactionRequestType->setBillTo($customerAddress);
         $transactionRequestType->setCustomer($customerData);
+        if(isset($addShippingAddress) && $addShippingAddress){
+            $transactionRequestType->setShipTo($shipToAddress);
+        }
         $transactionRequestType->addToTransactionSettings($duplicateWindowSetting);
         // Add custom fields to transaction request
         foreach($customfields as $customfield){
