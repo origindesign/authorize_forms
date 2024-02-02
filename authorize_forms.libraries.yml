@@ -4,4 +4,4 @@ scripts:
     js/scripts.js: { preprocess: false }
   dependencies:
     - core/drupal
-    - core/jquery.once
+    - core/once

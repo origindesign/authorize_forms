@@ -2,5 +2,5 @@ name: Authorize Forms
 type: module
 description: Module to connect payment forms to Authorize.net payment gateway
 package: Custom
-core_version_requirement: ^8.8 || ^9
-version: '8.x-2.2'
+core_version_requirement: ^9 || ^10
+version: '8.x-3.0'

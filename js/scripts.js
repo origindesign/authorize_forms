@@ -5,9 +5,9 @@
     Drupal.behaviors.authorizeForms = {};
     Drupal.behaviors.authorizeForms.form = $('.payment-form form');
 
-    Drupal.behaviors.authorizeForms.attach = function (context, settings) {
+    Drupal.behaviors.authorizeForms.attach = function (context) {
 
-        $('body', context).once('authorizeForms').each(function () {
+        once('authorizeForms', 'body', context).forEach(function () {
 
             // Payment form submit
             Drupal.behaviors.authorizeForms.form.find('input[name="runAccept"]').on('click', function(event){
